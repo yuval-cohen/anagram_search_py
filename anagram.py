@@ -2,7 +2,7 @@
 
 from enum import Enum
 
-class NextAnagramRC(Enum):
+class NextAnagram(Enum):
     NO_PHRASE = 1
     PHRASE_TOO_LONG = 2
     NEXT_FOUND = 3
@@ -30,16 +30,16 @@ class Anagram:
 
     def find_next_anagram(self):
         if self._phrase == "":
-            return NextAnagramRC.NO_PHRASE
+            return NextAnagram.NO_PHRASE
 
         if self._root_anagram == "":
             # removes punctuations space and transform to lowercase
-            punct_table = str.maketrans("!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"+'"', 32*" ")
+            punct_table = str.maketrans("!#$%&'()*+,-./:;<=>?@[\]^_`{|}~\"", 32*" ")
             self._root_anagram = self._phrase.translate(punct_table)
             self._root_anagram = self._root_anagram.replace(" ", "")
             self._root_anagram = self._root_anagram.lower()
             if len(self._root_anagram) > self._max_anagram_len:
-                return NextAnagramRC.PHRASE_TOO_LONG
+                return NextAnagram.PHRASE_TOO_LONG
 
             # create initial root anagram */
             self._root_anagram = "".join(sorted(self._root_anagram))
@@ -52,11 +52,11 @@ class Anagram:
                 self._root_anagram = "".join(next_permutation)
                 self._multi_anagram_index = 0
             except StopIteration:
-                return NextAnagramRC.END_OF_OUTPUT
+                return NextAnagram.END_OF_OUTPUT
 
         self._next_multi_anagram()
 
-        return NextAnagramRC.NEXT_FOUND
+        return NextAnagram.NEXT_FOUND
 
 
     def get_next_anagram(self):
