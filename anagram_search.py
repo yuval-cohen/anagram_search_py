@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """A program searches all anagrams of a word or phrase that its
 words can be found in an input word-list UTF-8 text file.
 The program prints all those anagrams to the standard output.
