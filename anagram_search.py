@@ -53,7 +53,7 @@ def print_all_anagrams_in_word_list(phrase_str, word_list):
                 all_anagram_words_found = False
                 break
         if all_anagram_words_found:
-            print(next_anagram)
+            print(" ".join(next_anagram))
 
 
 def main(phrase_str, file_name):
